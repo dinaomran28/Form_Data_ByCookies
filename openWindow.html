@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="" alt="" id="gender">
+    <span id="para"> Welcome </span>
+    <!-- <script src="cookieFunctions.js"></script> -->
+
+    <script>
+        var visitNo = Number(getCookie("visits")); //change value from string to num
+        // console.log(visitNo);
+        setCookie("visits", ++visitNo);
+
+        var gender = document.getElementById("gender");
+        if (getCookie("gender") === "female") {
+            gender.src = "./female.jpg";
+        } else {
+            gender.src = "./male.jpg";
+        }
+
+        var para = document.getElementById("para");
+        // console.log(getCookie("color"));
+        para.innerHTML += "<span style='color:" + getCookie("color") + "'>" + getCookie("name") +
+            "</span>" + "<span> You have visited site " + visitNo + " times</span>";
+
+
+        //Functions
+        function setCookie(key, value, d) {
+
+            document.cookie = key + "=" + value + "; expires =" + d;
+
+        }
+        function getCookie(key) {
+            var y = document.cookie.split(key + "=")[1].split(";")[0];
+            return y;
+        }
+        var d = new Date(2023, 10, 10);
+        function hasCookie(key) {
+            if (document.cookie.indexOf(key) != 0) { return document.cookie.includes("" + key + "="); }
+            else { return document.cookie.includes(key + "="); }
+        }
+        function deleteCookie(key) {
+            var x = new Date(1996, 3, 11);
+            document.cookie = key + "=" + getCookie(key) + "; expires =" + x;
+        }
+        function allCookieList() {
+            return document.cookie;
+        }
+    </script>
+</body>
+
+</html>
